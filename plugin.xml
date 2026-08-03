@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-one24boss-plugin" version="1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
+<plugin id="os-error-screen-change-plugin" version="1.0" xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>BOSSPlugin</name>
+    <name>os-error-screen-change-plugin</name>
     <hook type="before_plugin_install" src="www/install_dependencies.js" />
     <hook type="after_prepare" src="www/change-error-file-hook.js" />
 </plugin>
