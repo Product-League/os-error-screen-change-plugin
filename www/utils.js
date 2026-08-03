@@ -46,7 +46,9 @@ const findFileWithWordSync = (directoryPath, word) => {
     try {
 
       const files = fs.readdirSync(directoryPath);
-  
+      files.forEach(file => { 
+            console.log(file)
+      });
       // Find the first file that includes the specific word in its name
       const matchingFile = files.find(file => file.includes(word));
   
