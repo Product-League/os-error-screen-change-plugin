@@ -1,11 +1,14 @@
 {
-  "name": "bossplugin",
+  "name": "os-error-screen-change-plugin",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "description": "Plugin to replace the OS default app error screen HTML with a custom one added as resource of the app named customError.",
+  "cordova": {
+    "id": "os-error-screen-change-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Product League B.V.",
+  "license": "MIT"
 }
