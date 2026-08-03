@@ -1,1 +1,1 @@
-# ONE24
+# OS Error Screen Changer
