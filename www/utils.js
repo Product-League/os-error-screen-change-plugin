@@ -28,8 +28,13 @@ const replaceHtmlContent = (sourceFilePath, targetFilePath, selector) => {
       // Remove script tag
       $source("body script").remove();
 
+      const targetHead = $target('head').html();
+      const targetBody = $target('body').html();
+          
       // Find the element and replace it in the source HTML
-      $source(selector).html($target.html());
+      $source(selector).html(targetBody);
+      if(targetHead && targetHead.trim())
+          $source('head').append(targetHead);  
       
       // Write the modified HTML back to the _error.html
       fs.writeFileSync(sourceFilePath, $source.html());
