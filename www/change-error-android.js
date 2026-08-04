@@ -1,11 +1,13 @@
 console.log('STEP0');
-const utils = require("./utils/utils"),
-      path = require('path');
+const path = require('path');
+console.log('STEP0.1');
 const fs = require('fs');
 console.log('STEP1.1');
 const ExtendedConfigParser2 = require('./utils/extendedConfigParser');
 console.log('STEP1.2');
 const PREFERENCE_NAME = 'CustomErrorJS';
+const utils = require("./utils/utils");
+console.log('STEP1.3');
 
 module.exports = function (context) {
 console.log('STEP1');
