@@ -8,7 +8,7 @@
  * @returns a class that extends ConfigParser with extra functionalities
  */
 function createClass(context) {
-    const ConfigParser = context.requireCordovaModule('cordova-lib').configparser;
+    const ConfigParser = context.requireCordovaModule('cordova-common').ConfigParser;
 
     return class ExtendedConfigParser extends ConfigParser {
 
