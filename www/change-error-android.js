@@ -3,11 +3,22 @@ const path = require('path');
 console.log('STEP0.1');
 const fs = require('fs');
 console.log('STEP1.1');
-const ExtendedConfigParser = require('./utils/extendedConfigParser');
+//const ExtendedConfigParser = require('./utils/extendedConfigParser');
 console.log('STEP1.2');
 const PREFERENCE_NAME = 'CustomErrorJS';
 const utils = require("./utils/utils");
 console.log('STEP1.3');
+
+let ExtendedConfigParser;
+try {
+    ExtendedConfigParser = require('./utils/extendedConfigParser');
+} catch (e) {
+    console.error('Failed to require extendedConfigParser:', e.message);
+    console.error(e.stack);
+    throw e;
+}
+
+
 
 module.exports = function (context) {
 console.log('STEP1');
