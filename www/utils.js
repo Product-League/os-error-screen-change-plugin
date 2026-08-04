@@ -15,7 +15,7 @@ const readFileSync = (filePath) => {
 
 
 // Main function to perform the replacement
-const replaceHtmlContent = (sourceFilePath, targetFilePath, selector) => {
+const replaceHtmlContent = (sourceFilePath, targetFilePath, selector, scriptFileName) => {
     try {
 
       const sourceHtml = readFileSync(sourceFilePath);
@@ -24,13 +24,19 @@ const replaceHtmlContent = (sourceFilePath, targetFilePath, selector) => {
       const source = parse(sourceHtml);
       const target = parse(targetHtml); // parsed literally, no head/body hoisting
       
-      // Remove existing scripts in body
-      source.querySelectorAll('body script').forEach(el => el.remove());
+      // Remove any old inline script tags in body (from previous default content)
+      source.querySelectorAll('body script').forEach((el) => el.remove());
       
       const el = source.querySelector(selector);
       if (!el) throw new Error(`Selector "${selector}" not found in source`);
       
+      // Inject just the fragment content
       el.set_content(target.toString());
+      
+      // Append an external script reference instead of inline code
+      const body = source.querySelector('body');
+      if (!body) throw new Error('No <body> found in source HTML');
+      body.insertAdjacentHTML('beforeend', `<script src="${scriptFileName}"></script>`);
       
       fs.writeFileSync(sourceFilePath, source.toString());
       console.log('The HTML content has been replaced and saved as "_error.html"');
