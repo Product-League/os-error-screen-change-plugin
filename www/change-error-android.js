@@ -29,8 +29,13 @@ console.log('STEP1');
     const preferenceValue = parser.getPreferenceValue(PREFERENCE_NAME, platform);
       console.log('STEP2');
     let errorJSContent = null;
-    const errorJSPath = path.join('www','custom-error.js');
-      console.log('STEP3');
+
+    const directoryPath = context.opts.projectRoot + '/www'; 
+    const android_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
+    const error_jsPath = "/MijnHollandZorgApp/" + path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
+    
+    const errorJSPath = directoryPath + "/" + path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error');
+    
     if (preferenceValue) {
         try {
             // Decode the base64-encoded value
@@ -47,11 +52,7 @@ console.log('STEP1');
 
       
     const selector = '#error-screen-wrapper';
-console.log('STEP6');
-    const directoryPath = context.opts.projectRoot + '/www'; 
-    const android_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
-    const error_jsPath = "/MijnHollandZorgApp/custom-error.js" //+ path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
-console.log('STEP7');
+
     const targetFilePath = utils.findFileWithWordSync(directoryPath, 'customError');
     console.log('Target file path:', targetFilePath);
     const sourceFilePath = directoryPath + "/_error.html";//utils.findFileWithWordSync(directoryPath, '_error.html');
