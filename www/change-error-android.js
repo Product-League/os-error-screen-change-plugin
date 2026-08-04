@@ -1,8 +1,6 @@
-console.log('STEP0');
 const utils = require("./utils/utils"),
       path = require('path');
 const fs = require('fs');
-const logger = require('cordova-common').CordovaLogger.get();
 const ExtendedConfigParser = require('./utils/extendedConfigParser');
 const PREFERENCE_NAME_SUFFIX = 'CustomErrorJS';
 
@@ -26,7 +24,7 @@ console.log('STEP1');
               console.log('STEP5');
             fs.writeFileSync(errorJSPath, errorJSContent);
         } catch (e) {
-            logger.error(`Invalid base64-encoded value for preference ${PREFERENCE_NAME_SUFFIX}`,e);
+            console.log('Invalid base64-encoded value for preference ' + PREFERENCE_NAME_SUFFIX);
             return;
         }
     }
