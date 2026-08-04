@@ -6,20 +6,23 @@ const ExtendedConfigParser = require('./utils/extendedConfigParser');
 const PREFERENCE_NAME_SUFFIX = 'CustomErrorJS';
 
 module.exports = function (context) {
-
+console.log('STEP1');
       // Get the platform (android or ios)
     const platform = context.opts.cordova.platforms[0];
       //Get the preference with the JS file to be executed by the error screen
     const parser = ExtendedConfigParser.createInstance(context);
     const preferenceValue = parser.getPreference(PREFERENCE_NAME_SUFFIX, platform);
+      console.log('STEP2');
     let errorJSContent = null;
     const errorJSPath = path.join('www','custom-error.js');
-      
+      console.log('STEP3');
     if (preferenceValue) {
         try {
             // Decode the base64-encoded value
+              console.log('STEP4');
             const decodedValue = Buffer.from(preferenceValue, 'base64').toString('utf-8');
             errorJSContent = decodedValue.trim();
+              console.log('STEP5');
             fs.writeFileSync(errorJSPath, errorJSContent);
         } catch (e) {
             logger.error(`Invalid base64-encoded value for preference ${PREFERENCE_NAME_SUFFIX}`,e);
@@ -29,11 +32,11 @@ module.exports = function (context) {
 
       
     const selector = '#error-screen-wrapper';
-
+console.log('STEP6');
     const directoryPath = context.opts.projectRoot + '/www'; 
     const android_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
     const error_jsPath = "/MijnHollandZorgApp/custom-error.js" //+ path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
-
+console.log('STEP7');
     const targetFilePath = utils.findFileWithWordSync(directoryPath, 'customError');
     console.log('Target file path:', targetFilePath);
     const sourceFilePath = directoryPath + "/_error.html";//utils.findFileWithWordSync(directoryPath, '_error.html');
