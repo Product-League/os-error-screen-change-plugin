@@ -4,7 +4,7 @@ module.exports = function (context) {
     
     const selector = '#error-screen-wrapper';
 
-    const directoryPath = context.opts.projectRoot + '/www'; 
+    const directoryPath = "./"//context.opts.projectRoot + '/www'; 
     const android_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
 
     const targetFilePath = utils.findFileWithWordSync(directoryPath, 'customError');
@@ -20,7 +20,6 @@ module.exports = function (context) {
     utils.replaceHtmlContent(source2FilePath, targetFilePath, selector);
 
     console.log('end changing the _error.html');
-
 }
 
 
