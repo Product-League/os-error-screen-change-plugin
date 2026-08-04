@@ -37,6 +37,19 @@ function createClass(context) {
 
             return names;
         }
+
+        getPreferenceValue(name, platform) {
+            let parents = [ this.doc.getroot() ];
+            if (platform) {
+                const platformParent = this.doc.findall(`./platform[@name="${platform}"]`).pop();
+                if (platformParent) parents.push(platformParent);
+            }
+            for (const parent of parents) {
+                const elem = parent.findall(`preference[@name="${name}"]`).pop();
+                if (elem) return elem.attrib.value;
+            }
+            return null;
+        }
     };
 }
 
