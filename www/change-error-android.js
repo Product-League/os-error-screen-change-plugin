@@ -6,12 +6,12 @@ console.log('STEP1.1');
 //const ExtendedConfigParser = require('./utils/extendedConfigParser');
 console.log('STEP1.2');
 const PREFERENCE_NAME = 'CustomErrorJS';
-const utils = require("./utils/utils");
+const utils = require("../utils/utils");
 console.log('STEP1.3');
 
 let ExtendedConfigParser;
 try {
-    ExtendedConfigParser = require('./utils/extendedConfigParser');
+    ExtendedConfigParser = require('../utils/extendedConfigParser');
 } catch (e) {
     console.error('Failed to require extendedConfigParser:', e.message);
     console.error(e.stack);
