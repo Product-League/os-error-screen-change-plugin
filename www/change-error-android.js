@@ -16,9 +16,9 @@ module.exports = function (context) {
     const source2FilePath = utils.findFileWithWordSync(android_directoryPath, '_error.html');
     console.log('Source2 file path:', source2FilePath);
     const source3FilePath = utils.findFileWithWordSync(directoryPath, 'error.html');
-    console.log('Source2 file path:', source2FilePath);
+    console.log('Source3 file path:', source3FilePath);
     const source4FilePath = utils.findFileWithWordSync(android_directoryPath, 'error.html');
-    console.log('Source2 file path:', source2FilePath);
+    console.log('Source4 file path:', source4FilePath);
     
     console.log('start changing the _error.html');
 
