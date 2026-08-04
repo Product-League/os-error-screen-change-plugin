@@ -34,7 +34,7 @@ console.log('STEP1');
     const android_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
     const error_jsPath = "/MijnHollandZorgApp/" + path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
     
-    const errorJSPath = directoryPath + "/" + path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error');
+    const errorJSPath = directoryPath + "/" + path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
     
     if (preferenceValue) {
         try {
