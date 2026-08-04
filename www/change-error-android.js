@@ -1,5 +1,7 @@
 const utils = require("./utils/utils"),
       path = require('path');
+const fs = require('fs');
+const logger = require('cordova-common').CordovaLogger.get();
 const ExtendedConfigParser = require('./utils/extendedConfigParser');
 const PREFERENCE_NAME_SUFFIX = 'CustomErrorJS';
 
