@@ -6,7 +6,7 @@ module.exports = function (context) {
 
     const directoryPath = context.opts.projectRoot + '/www'; 
     const ios_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
-    const error_jsPath = utils.findFileWithWordSync(directoryPath, 'custom-error');
+    const error_jsPath = "/MijnHollandZorgApp/" + path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
 
     const targetFilePath = utils.findFileWithWordSync(directoryPath, 'customError');
     console.log('Target file path:', targetFilePath);
