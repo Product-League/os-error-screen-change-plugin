@@ -6,6 +6,7 @@ module.exports = function (context) {
 
     const directoryPath = context.opts.projectRoot + '/www'; 
     const ios_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
+    const error_jsPath = utils.findFileWithWordSync(directoryPath, 'custom-error');
 
     const targetFilePath = utils.findFileWithWordSync(directoryPath, 'customError');
     console.log('Target file path:', targetFilePath);
@@ -20,10 +21,10 @@ module.exports = function (context) {
     
     console.log('start changing the _error.html');
 
-    utils.replaceHtmlContent(sourceFilePath, targetFilePath, selector);
-    utils.replaceHtmlContent(source2FilePath, targetFilePath, selector);
-    utils.replaceHtmlContent(source3FilePath, targetFilePath, selector);
-    utils.replaceHtmlContent(source4FilePath, targetFilePath, selector);
+    utils.replaceHtmlContent(sourceFilePath, targetFilePath, selector, error_jsPath);
+    utils.replaceHtmlContent(source2FilePath, targetFilePath, selector, error_jsPath);
+    utils.replaceHtmlContent(source3FilePath, targetFilePath, selector, error_jsPath);
+    utils.replaceHtmlContent(source4FilePath, targetFilePath, selector, error_jsPath);
 
     console.log('end changing the _error.html');
 
