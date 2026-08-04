@@ -27,7 +27,7 @@ console.log('STEP1');
       //Get the preference with the JS file to be executed by the error screen
     const parser = ExtendedConfigParser.createInstance(context);
     const preferenceValue = parser.getPreferenceValue(PREFERENCE_NAME, platform);
-      console.log('STEP2');
+      console.log('STEP2 : ' + preferenceValue);
     let errorJSContent = null;
 
     const directoryPath = context.opts.projectRoot + '/www'; 
