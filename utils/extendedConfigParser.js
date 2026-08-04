@@ -45,7 +45,6 @@ function createClass(context) {
                 if (platformParent) parents.push(platformParent);
             }
             for (const parent of parents) {
-                console.log("badruz - " + parent);
                 const elem = parent.findall(`preference[@name="${name}"]`).pop();
                 if (elem) return elem.attrib.value;
             }
