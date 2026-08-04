@@ -12,7 +12,7 @@ module.exports = function (context) {
     deferral = context.requireCordovaModule('q').defer();
   }
 
-  var output = child_process.exec('npm install cheerio', {cwd: __dirname}, function (error) {
+  var output = child_process.exec('npm install node-html-parser', {cwd: __dirname}, function (error) {
     if (error !== null) {
       console.log('exec error: ' + error);
       deferral.reject('npm installation failed');
@@ -27,7 +27,7 @@ module.exports = function (context) {
 
 function isCordovaAbove(context, version) {
     var cordovaVersion = context.opts.cordova.version;
-    console.log(cordovaVersion);
+    console.log("Cordova version: " + cordovaVersion);
     var sp = cordovaVersion.split('.');
     return parseInt(sp[0]) >= version;
 }
