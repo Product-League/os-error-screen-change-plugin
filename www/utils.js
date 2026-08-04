@@ -1,6 +1,6 @@
 const fs = require('fs'),
-      path = require('path'),
-      parse = require('node-html-parser');
+      path = require('path');
+const { parse } = require('node-html-parser');
 
 
 // Function to read file content synchronously
