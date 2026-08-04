@@ -21,7 +21,7 @@ module.exports = function (context) {
       deferral.resolve();
     }
   });
-
+console.log('STEP INSTALL DEPENDENCIES');
   return deferral.promise;
 };
 
