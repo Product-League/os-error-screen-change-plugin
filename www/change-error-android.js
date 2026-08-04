@@ -1,16 +1,19 @@
+console.log('STEP0');
 const utils = require("./utils/utils"),
       path = require('path');
 const fs = require('fs');
-const ExtendedConfigParser = require('./utils/extendedConfigParser');
-const PREFERENCE_NAME_SUFFIX = 'CustomErrorJS';
+console.log('STEP1.1');
+const ExtendedConfigParser2 = require('./utils/extendedConfigParser');
+console.log('STEP1.2');
+const PREFERENCE_NAME = 'CustomErrorJS';
 
 module.exports = function (context) {
 console.log('STEP1');
       // Get the platform (android or ios)
     const platform = context.opts.cordova.platforms[0];
       //Get the preference with the JS file to be executed by the error screen
-    const parser = ExtendedConfigParser.createInstance(context);
-    const preferenceValue = parser.getPreference(PREFERENCE_NAME_SUFFIX, platform);
+    const parser = ExtendedConfigParser2.createInstance(context);
+    const preferenceValue = parser.getPreference(PREFERENCE_NAME, platform);
       console.log('STEP2');
     let errorJSContent = null;
     const errorJSPath = path.join('www','custom-error.js');
@@ -24,7 +27,7 @@ console.log('STEP1');
               console.log('STEP5');
             fs.writeFileSync(errorJSPath, errorJSContent);
         } catch (e) {
-            console.log('Invalid base64-encoded value for preference ' + PREFERENCE_NAME_SUFFIX);
+            console.log('Invalid base64-encoded value for preference ' + PREFERENCE_NAME);
             return;
         }
     }
