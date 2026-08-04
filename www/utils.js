@@ -1,6 +1,6 @@
 const fs = require('fs'),
       path = require('path'),
-      cheerio = require('cheerio');
+      parse = require('node-html-parser');
 
 
 // Function to read file content synchronously
@@ -21,23 +21,23 @@ const replaceHtmlContent = (sourceFilePath, targetFilePath, selector) => {
       const sourceHtml = readFileSync(sourceFilePath);
       const targetHtml = readFileSync(targetFilePath);
   
-      // Load the HTML content using cheerio
-      const $source = cheerio.load(sourceHtml);
-      const $target = cheerio.load(targetHtml);
+      const source = parse(sourceHtml);
+      const target = parse(targetHtml); // parsed literally, no head/body hoisting
   
-      // Remove script tag
-      $source("body script").remove();
+      // Remove existing scripts in body
+      source.querySelectorAll('body script').forEach(el => el.remove());
 
       const targetHead = $target('head').html();
       const targetBody = $target('body').html();
           
       // Find the element and replace it in the source HTML
-      $source(selector).html(targetBody);
-      if(targetHead && targetHead.trim())
-          $source('head').append(targetHead);  
+      const el = source.querySelector(selector);
+      if (!el) throw new Error(`Selector "${selector}" not found in source`);
+
+      el.set_content(target.toString());
       
       // Write the modified HTML back to the _error.html
-      fs.writeFileSync(sourceFilePath, $source.html());
+      fs.writeFileSync(sourceFilePath, source.toString());
       console.log('The HTML content has been replaced and saved as "_error.html"');
   
     } catch (err) {
