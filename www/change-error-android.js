@@ -1,3 +1,4 @@
+console.log('STEP0');
 const utils = require("./utils/utils"),
       path = require('path');
 const fs = require('fs');
