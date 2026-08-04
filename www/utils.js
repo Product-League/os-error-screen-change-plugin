@@ -20,23 +20,18 @@ const replaceHtmlContent = (sourceFilePath, targetFilePath, selector) => {
 
       const sourceHtml = readFileSync(sourceFilePath);
       const targetHtml = readFileSync(targetFilePath);
-  
+      
       const source = parse(sourceHtml);
       const target = parse(targetHtml); // parsed literally, no head/body hoisting
-  
+      
       // Remove existing scripts in body
       source.querySelectorAll('body script').forEach(el => el.remove());
-
-      const targetHead = $target('head').html();
-      const targetBody = $target('body').html();
-          
-      // Find the element and replace it in the source HTML
+      
       const el = source.querySelector(selector);
       if (!el) throw new Error(`Selector "${selector}" not found in source`);
-
+      
       el.set_content(target.toString());
       
-      // Write the modified HTML back to the _error.html
       fs.writeFileSync(sourceFilePath, source.toString());
       console.log('The HTML content has been replaced and saved as "_error.html"');
   
