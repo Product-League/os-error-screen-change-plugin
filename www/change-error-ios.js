@@ -11,13 +11,13 @@ module.exports = function (context) {
 
     const targetFilePath = utils.findFileWithWordSync(directoryPath, 'customError');
     console.log('Target file path:', targetFilePath);
-    const sourceFilePath = utils.findFileWithWordSync(directoryPath, '_error.html');
+    const sourceFilePath = directoryPath + "/_error.html";//utils.findFileWithWordSync(directoryPath, '_error.html');
     console.log('Source file path:', sourceFilePath);
-    const source2FilePath = utils.findFileWithWordSync(ios_directoryPath, '_error.html');
+    const source2FilePath = ios_directoryPath + "/_error.html";//utils.findFileWithWordSync(ios_directoryPath, '_error.html');
     console.log('Source2 file path:', source2FilePath);
-    const source3FilePath = utils.findFileWithWordSync(directoryPath, 'error.html');
+    const source3FilePath = directoryPath + "/error.html";//utils.findFileWithWordSync(directoryPath, 'error.html');
     console.log('Source3 file path:', source3FilePath);
-    const source4FilePath = utils.findFileWithWordSync(ios_directoryPath, 'error.html');
+    const source4FilePath = ios_directoryPath + "/error.html";//utils.findFileWithWordSync(ios_directoryPath, 'error.html');
     console.log('Source4 file path:', source4FilePath);
     
     console.log('start changing the _error.html');
