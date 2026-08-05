@@ -126,26 +126,29 @@ const generateNewErrorHTLMs = (context, platform) => {
     const source4FilePath = platform_directoryPath + "/error.html";
     console.log('Source4 file path:', source4FilePath);
 
+    if (platform !== "ios") {
+      let errorJSContent = null;
+      try {
+        errorJSContent = readFileSync(errorJS_UploadedPath);
+        fs.writeFileSync(errorJS_PublicPath, errorJSContent);
+      } catch (e) {
+        console.log('Invalid custom-error.js file.');
+        return;
+      }
 
-    let errorJSContent = null;
-    try {
-      errorJSContent = readFileSync(errorJS_UploadedPath);
-      fs.writeFileSync(errorJS_PublicPath, errorJSContent);
-    } catch (e) {
-      console.log('Invalid custom-error.js file.');
-      return;
+
+
+      console.log('start changing the _error.html');
+
+      replaceHtmlContent(sourceFilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+      replaceHtmlContent(source2FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+      replaceHtmlContent(source3FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+      replaceHtmlContent(source4FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+
+      console.log('end changing the _error.html');
     }
 
-
-
-    console.log('start changing the _error.html');
-
-    replaceHtmlContent(sourceFilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
-    replaceHtmlContent(source2FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
-    replaceHtmlContent(source3FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
-    replaceHtmlContent(source4FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
-
-    console.log('end changing the _error.html');
+    
 
   } catch (err) {
     console.error('Error:', err);
