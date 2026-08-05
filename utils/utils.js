@@ -82,23 +82,42 @@ const generateNewErrorHTLMs = (context, platform) => {
     const directoryPath = context.opts.projectRoot + '/www';
 
     let platform_directoryPath = "";
-    let configPath = "";
+    let configPath = path.join( context.opts.projectRoot, 'config.xml' );
     if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
-      configPath = "/platforms/ios/PLUS/config.xml";
+      //configPath = "/platforms/ios/PLUS/config.xml";
     }
     else {
       platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
-      configPath = "/platforms/android/app/src/main/res/xml/config.xml";
+      //configPath = "/platforms/android/app/src/main/res/xml/config.xml";
     }
 
 
     const appName = getAppName(context.opts.projectRoot + configPath);
     console.log("App name:", appName);
 
-    const errorJS_PublicPath = "/" + appName + "/" + "custom-error.js";
-
+    const errorJS_HTML_Script_Path = "/" + appName + "/" + "custom-error.js";
+    const errorJS_PublicPath = directoryPath + "/custom-error.js";
     const errorJS_UploadedPath = platform_directoryPath + "/custom-error.js";
+
+    const selector = '#error-screen-wrapper';
+
+    const targetFilePath = findFileWithWordSync(directoryPath, 'customError');
+    console.log('Target file path:', targetFilePath);
+
+    const sourceFilePath = directoryPath + "/_error.html";
+    console.log('Source file path:', sourceFilePath);
+
+    const source2FilePath = platform_directoryPath + "/_error.html";
+    console.log('Source2 file path:', source2FilePath);
+
+    const source3FilePath = directoryPath + "/error.html"; 
+    console.log('Source3 file path:', source3FilePath);
+
+    const source4FilePath = platform_directoryPath + "/error.html";
+    console.log('Source4 file path:', source4FilePath);
+
+
     let errorJSContent = null;
     try {
       errorJSContent = readFileSync(errorJS_UploadedPath);
@@ -109,19 +128,6 @@ const generateNewErrorHTLMs = (context, platform) => {
     }
 
 
-
-    const selector = '#error-screen-wrapper';
-
-    const targetFilePath = findFileWithWordSync(directoryPath, 'customError');
-    console.log('Target file path:', targetFilePath);
-    const sourceFilePath = directoryPath + "/_error.html";//findFileWithWordSync(directoryPath, '_error.html');
-    console.log('Source file path:', sourceFilePath);
-    const source2FilePath = platform_directoryPath + "/_error.html";//findFileWithWordSync(platform_directoryPath, '_error.html');
-    console.log('Source2 file path:', source2FilePath);
-    const source3FilePath = directoryPath + "/error.html";//findFileWithWordSync(directoryPath, 'error.html');
-    console.log('Source3 file path:', source3FilePath);
-    const source4FilePath = platform_directoryPath + "/error.html";//findFileWithWordSync(platform_directoryPath, 'error.html');
-    console.log('Source4 file path:', source4FilePath);
 
     console.log('start changing the _error.html');
 
