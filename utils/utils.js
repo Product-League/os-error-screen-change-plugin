@@ -1,7 +1,7 @@
 const fs = require('fs'),
   path = require('path');
 const { parse } = require('node-html-parser');
-
+const ConfigParser = require('cordova-common').ConfigParser;
 
 // Function to read file content synchronously
 const readFileSync = (filePath) => {
@@ -13,18 +13,10 @@ const readFileSync = (filePath) => {
   }
 };
 
-async function getAppName(configPath) {
-    const configXml = fs.readFileSync(configPath, 'utf8');
 
-    const config = await xml2js.parseStringPromise(configXml);
-
-    const preferences = config.widget.preference || [];
-
-    const appPreference = preferences.find(
-        preference => preference.$?.name === 'DefaultApplicationURL'
-    );
-
-    return appPreference?.$?.value;
+function getAppName(configPath) {
+    const config = new ConfigParser(configPath);
+    return config.getPreference('DefaultApplicationURL');
 }
 
 
