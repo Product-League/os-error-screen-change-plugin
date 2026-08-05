@@ -13,6 +13,20 @@ const readFileSync = (filePath) => {
   }
 };
 
+function getAppFriendlyName(configPath) {
+    const parseString = xml2js.parseString;
+    const config_xml = fs.readFileSync(configPath).toString();
+    let appName;
+    console.log("Config xml: " + config_xml);
+    parseString(config_xml, (err, config) => {
+        if (err) return console.error(err);
+
+        console.log("App identifier: " + config['widget']['$'].id);
+        console.log("App name: " + config['widget']['name'])
+        appId = config['widget']['name'];
+    })
+    return appName;
+}
 
 function getAppName(configPath) {
     const config = new ConfigParser(configPath);
@@ -83,6 +97,7 @@ const generateNewErrorHTLMs = (context, platform) => {
 
     let platform_directoryPath = "";
     let configPath = path.join( context.opts.projectRoot, 'config.xml' );
+    let appFriedlyName = getAppFriendlyName(configPath);
     if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
       //configPath = "/platforms/ios/PLUS/config.xml";
@@ -93,7 +108,7 @@ const generateNewErrorHTLMs = (context, platform) => {
     }
 
 
-    const appName = getAppName(context.opts.projectRoot + configPath);
+    const appName = getAppName(configPath);
     console.log("App name:", appName);
 
     const errorJS_HTML_Script_Path = "/" + appName + "/" + "custom-error.js";
