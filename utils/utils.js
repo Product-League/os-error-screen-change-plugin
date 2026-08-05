@@ -1,4 +1,5 @@
 const fs = require('fs'),
+  xml2js = require('xml2js'),
   path = require('path');
 const { parse } = require('node-html-parser');
 const ConfigParser = require('cordova-common').ConfigParser;
@@ -14,23 +15,23 @@ const readFileSync = (filePath) => {
 };
 
 function getAppFriendlyName(configPath) {
-    const parseString = xml2js.parseString;
-    const config_xml = fs.readFileSync(configPath).toString();
-    let appName;
-    console.log("Config xml: " + config_xml);
-    parseString(config_xml, (err, config) => {
-        if (err) return console.error(err);
+  const parseString = xml2js.parseString;
+  const config_xml = fs.readFileSync(configPath).toString();
+  let appName;
+  console.log("Config xml: " + config_xml);
+  parseString(config_xml, (err, config) => {
+    if (err) return console.error(err);
 
-        console.log("App identifier: " + config['widget']['$'].id);
-        console.log("App name: " + config['widget']['name'])
-        appId = config['widget']['name'];
-    })
-    return appName;
+    console.log("App identifier: " + config['widget']['$'].id);
+    console.log("App name: " + config['widget']['name'])
+    appId = config['widget']['name'];
+  })
+  return appName;
 }
 
 function getAppName(configPath) {
-    const config = new ConfigParser(configPath);
-    return config.getPreference('DefaultApplicationURL');
+  const config = new ConfigParser(configPath);
+  return config.getPreference('DefaultApplicationURL');
 }
 
 
@@ -92,11 +93,11 @@ const findFileWithWordSync = (directoryPath, word) => {
 // Main function to generate the new error html files
 const generateNewErrorHTLMs = (context, platform) => {
   try {
-    
+
     const directoryPath = context.opts.projectRoot + '/www';
 
     let platform_directoryPath = "";
-    let configPath = path.join( context.opts.projectRoot, 'config.xml' );
+    let configPath = path.join(context.opts.projectRoot, 'config.xml');
     let appFriedlyName = getAppFriendlyName(configPath);
     if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
@@ -126,7 +127,7 @@ const generateNewErrorHTLMs = (context, platform) => {
     const source2FilePath = platform_directoryPath + "/_error.html";
     console.log('Source2 file path:', source2FilePath);
 
-    const source3FilePath = directoryPath + "/error.html"; 
+    const source3FilePath = directoryPath + "/error.html";
     console.log('Source3 file path:', source3FilePath);
 
     const source4FilePath = platform_directoryPath + "/error.html";
