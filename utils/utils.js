@@ -92,11 +92,12 @@ const generateNewErrorHTLMs = (context, platform) => {
 
     const directoryPath = context.opts.projectRoot + '/www';
 
+    const appFriendlyName = getAppFriendlyName(configPath);
     let platform_directoryPath = "";
     let configPath = path.join(context.opts.projectRoot, 'config.xml');
 
     if (platform == "ios") 
-      platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
+      platform_directoryPath = context.opts.projectRoot + '/platforms/ios/' + appFriendlyName + '/Resources/www';
     else 
       platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
     
