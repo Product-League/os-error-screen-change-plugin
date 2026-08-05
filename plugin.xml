@@ -3,11 +3,5 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>os-error-screen-change-plugin</name>
     <hook type="before_plugin_install" src="www/install_dependencies.js" />
-
-    <platform name="android">
-        <hook type="after_prepare" src="www/change-error-android.js" />
-     </platform>
-    <platform name="ios">
-        <hook type="after_prepare" src="www/change-error-ios.js" />
-     </platform>
+    <hook type="after_prepare" src="www/change-error.js" />
 </plugin>
