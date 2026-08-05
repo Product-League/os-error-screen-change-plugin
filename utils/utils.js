@@ -139,10 +139,10 @@ const generateNewErrorHTLMs = (context, platform) => {
 
     console.log('start changing the _error.html');
 
-    replaceHtmlContent(sourceFilePath, targetFilePath, selector, errorJS_UploadedPath);
-    replaceHtmlContent(source2FilePath, targetFilePath, selector, errorJS_UploadedPath);
-    replaceHtmlContent(source3FilePath, targetFilePath, selector, errorJS_UploadedPath);
-    replaceHtmlContent(source4FilePath, targetFilePath, selector, errorJS_UploadedPath);
+    replaceHtmlContent(sourceFilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+    replaceHtmlContent(source2FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+    replaceHtmlContent(source3FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
+    replaceHtmlContent(source4FilePath, targetFilePath, selector, errorJS_HTML_Script_Path);
 
     console.log('end changing the _error.html');
 
