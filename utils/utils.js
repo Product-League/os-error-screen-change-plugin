@@ -13,6 +13,36 @@ const readFileSync = (filePath) => {
   }
 };
 
+function getAppIdentifier(configPath) {
+    const parseString = xml2js.parseString;
+    const config_xml = fs.readFileSync(configPath).toString();
+    let appId;
+    console.log("Config xml: " + config_xml);
+    parseString(config_xml, (err, config) => {
+        if (err) return console.error(err);
+
+        console.log("App identifier: " + config['widget']['$'].id);
+        console.log("App name: " + config['widget']['name'])
+        appId = config['widget']['$'].id;
+    })
+    return appId;
+}
+
+
+async function getAppName(configPath) {
+    const configXml = fs.readFileSync(configPath, 'utf8');
+
+    const config = await xml2js.parseStringPromise(configXml);
+
+    const preferences = config.widget.preference || [];
+
+    const appPreference = preferences.find(
+        preference => preference.$?.name === 'DefaultApplicationURL'
+    );
+
+    return appPreference?.$?.value;
+}
+
 
 // Main function to perform the replacement
 const replaceHtmlContent = (sourceFilePath, targetFilePath, selector, scriptFileName) => {
