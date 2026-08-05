@@ -85,11 +85,11 @@ const generateNewErrorHTLMs = (context, platform) => {
     let configPath = "";
     if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
-      configPath: "/platforms/ios/PLUS/config.xml";
+      configPath = "/platforms/ios/PLUS/config.xml";
     }
     else {
       platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
-      configPath: "/platforms/android/app/src/main/res/xml/config.xml";
+      configPath = "/platforms/android/app/src/main/res/xml/config.xml";
     }
 
 
