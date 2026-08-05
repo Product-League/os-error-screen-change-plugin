@@ -18,12 +18,8 @@ function getAppFriendlyName(configPath) {
   const parseString = xml2js.parseString;
   const config_xml = fs.readFileSync(configPath).toString();
   let appName;
-  console.log("Config xml: " + config_xml);
   parseString(config_xml, (err, config) => {
     if (err) return console.error(err);
-
-    console.log("App identifier: " + config['widget']['$'].id);
-    console.log("App name: " + config['widget']['name'])
     appId = config['widget']['name'];
   })
   return appName;
@@ -98,16 +94,12 @@ const generateNewErrorHTLMs = (context, platform) => {
 
     let platform_directoryPath = "";
     let configPath = path.join(context.opts.projectRoot, 'config.xml');
-    let appFriedlyName = getAppFriendlyName(configPath);
-    if (platform == "ios") {
-      platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
-      //configPath = "/platforms/ios/PLUS/config.xml";
-    }
-    else {
-      platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
-      //configPath = "/platforms/android/app/src/main/res/xml/config.xml";
-    }
 
+    if (platform == "ios") 
+      platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
+    else 
+      platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
+    
 
     const appName = getAppName(configPath);
     console.log("App name:", appName);
