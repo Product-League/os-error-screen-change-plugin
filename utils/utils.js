@@ -13,22 +13,6 @@ const readFileSync = (filePath) => {
   }
 };
 
-function getAppIdentifier(configPath) {
-    const parseString = xml2js.parseString;
-    const config_xml = fs.readFileSync(configPath).toString();
-    let appId;
-    console.log("Config xml: " + config_xml);
-    parseString(config_xml, (err, config) => {
-        if (err) return console.error(err);
-
-        console.log("App identifier: " + config['widget']['$'].id);
-        console.log("App name: " + config['widget']['name'])
-        appId = config['widget']['$'].id;
-    })
-    return appId;
-}
-
-
 async function getAppName(configPath) {
     const configXml = fs.readFileSync(configPath, 'utf8');
 
@@ -102,20 +86,27 @@ const findFileWithWordSync = (directoryPath, word) => {
 // Main function to generate the new error html files
 const generateNewErrorHTLMs = (context, platform) => {
   try {
-
+    
     const directoryPath = context.opts.projectRoot + '/www';
 
     const platform_directoryPath = "";
-    if (platform == "ios")
+    const cofigPath = "";
+    if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
-    else
+      cofigPath: "/platforms/ios/PLUS/config.xml";
+    }
+    else {
       platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
+      cofigPath: "/platforms/android/app/src/main/res/xml/config.xml";
+    }
 
 
+    const appName = await getAppName(context.opts.projectRoot + configPath);
+    console.log("App name:", appName);
 
-    const errorJS_PublicPath = "/MijnHollandZorgApp/" + "custom-error.js";//path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
+    const errorJS_PublicPath = "/" + appName + "/" + "custom-error.js";
 
-    const errorJS_UploadedPath = platform_directoryPath + "/custom-error.js";//path.basename(utils.findFileWithWordSync(directoryPath, 'custom-error'));
+    const errorJS_UploadedPath = platform_directoryPath + "/custom-error.js";
     let errorJSContent = null;
 
     try {
