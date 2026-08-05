@@ -81,8 +81,8 @@ const generateNewErrorHTLMs = (context, platform) => {
     
     const directoryPath = context.opts.projectRoot + '/www';
 
-    const platform_directoryPath = "";
-    const cofigPath = "";
+    let platform_directoryPath = "";
+    let cofigPath = "";
     if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
       cofigPath: "/platforms/ios/PLUS/config.xml";
@@ -100,7 +100,6 @@ const generateNewErrorHTLMs = (context, platform) => {
 
     const errorJS_UploadedPath = platform_directoryPath + "/custom-error.js";
     let errorJSContent = null;
-
     try {
       errorJSContent = readFileSync(errorJS_UploadedPath);
       fs.writeFileSync(errorJS_PublicPath, errorJSContent);
