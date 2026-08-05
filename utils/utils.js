@@ -150,7 +150,8 @@ const generateNewErrorHTLMs = (context, platform) => {
 module.exports = {
   readFileSync,
   replaceHtmlContent,
-  findFileWithWordSync
+  findFileWithWordSync,
+  generateNewErrorHTLMs
 }
 
 
