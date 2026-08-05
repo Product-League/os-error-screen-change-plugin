@@ -93,7 +93,7 @@ const generateNewErrorHTLMs = (context, platform) => {
     }
 
 
-    const appName = await getAppName(context.opts.projectRoot + configPath);
+    const appName = getAppName(context.opts.projectRoot + configPath);
     console.log("App name:", appName);
 
     const errorJS_PublicPath = "/" + appName + "/" + "custom-error.js";
