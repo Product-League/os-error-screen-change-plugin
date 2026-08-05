@@ -82,14 +82,14 @@ const generateNewErrorHTLMs = (context, platform) => {
     const directoryPath = context.opts.projectRoot + '/www';
 
     let platform_directoryPath = "";
-    let cofigPath = "";
+    let configPath = "";
     if (platform == "ios") {
       platform_directoryPath = context.opts.projectRoot + '/platforms/ios/www';
-      cofigPath: "/platforms/ios/PLUS/config.xml";
+      configPath: "/platforms/ios/PLUS/config.xml";
     }
     else {
       platform_directoryPath = context.opts.projectRoot + '/platforms/android/app/src/main/assets/www';
-      cofigPath: "/platforms/android/app/src/main/res/xml/config.xml";
+      configPath: "/platforms/android/app/src/main/res/xml/config.xml";
     }
 
 
